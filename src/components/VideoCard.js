@@ -1,9 +1,22 @@
-import React from 'react'
+import React from "react";
 
-const VideoCard = () => {
-  return (
-    <div>VideoCard</div>
-  )
-}
+const VideoCard = ({ info }) => {
+  console.log(info);
 
-export default VideoCard
+  const { snippet, statistics } = info;
+  const { channelTitle,  thumbnails,title } = snippet;
+
+
+  return( 
+        <div className="p-2 m-2 w-48 shadow-lg">
+                <img className="rounded-lg" src={thumbnails.medium.url} alt="thumbnail" />
+                <ul>
+                    <li className='font-bold py-2'>{title}</li>
+                    <li>{channelTitle}</li>
+                    <li>{statistics.viewCount} views</li>
+                </ul>
+        </div>
+  );
+};
+
+export default VideoCard;

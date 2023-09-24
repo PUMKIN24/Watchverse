@@ -1,5 +1,6 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
 
 const Sidebar = () => {
 
@@ -10,7 +11,7 @@ const Sidebar = () => {
   return (
     <div className='p-5 shadow-lg w-48  '>
         <ul className='' >
-            <li className='flex'> <img className='h-5 px-2' src="https://icons.veryicon.com/png/o/commerce-shopping/poly-budget-icon-library/home-202.png" alt="home" />Home</li>
+            <li className='flex'> <img className='h-5 px-2' src="https://icons.veryicon.com/png/o/commerce-shopping/poly-budget-icon-library/home-202.png" alt="home" /><Link to={"/"}>Home </Link></li>
             <li className='flex'> <img className='h-5 px-2'  src="https://image.pngaaa.com/493/5593493-middle.png" alt="shorts" /> Shorts</li>
             <li className='flex'> <img className='h-5 px-2' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRHiqbTti9Ypeom7PmkUqe-f2SEeNQY_NZo1A&usqp=CAU" alt="videos" />Videos</li>
             <li className='flex'> <img className='h-5 px-2' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYmJIGWm_5zCyaMNTDVYq0QzZnoDmbeJEUeJPY1xMVMhtPYjjVdEjDBhBesnoMQ3tTgGs&usqp=CAU" alt="live" /> Live</li>
