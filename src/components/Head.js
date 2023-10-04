@@ -98,7 +98,7 @@ const Head = () => {
           <div className="fixed bg-white  w-[21rem] shadow-lg rounded-lg ">
             <ul>
               {suggestions.map((s) => (
-                <li key={s} className="flex py-2 hover:bg-gray-200 ">
+                <li key={s} className="flex py-2 hover:bg-gray-200 items-center ">
                   <img
                     className="w-5 h-5 mx-2 "
                     src="https://creazilla-store.fra1.digitaloceanspaces.com/icons/3432420/magnifier-icon-md.png"
