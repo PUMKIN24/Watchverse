@@ -4,18 +4,18 @@ import { toggleMenu } from "../utils/appSlice";
 import { YOUTUBE_SEARCH_API } from "../utils/constants";
 import { cacheResults } from "../utils/searchSlice";
 
-const Head = () => { 
-    //For Search box binding
-    const [searchQuery, setSearchQuery] = useState("");
-    //for suggestions
-    const [suggestions, setSuggestions] = useState([]);
-    //for focus and blur
-    const [showSuggestions, setShowSuggestions] = useState(false);
-    //Reading cache
-    const searchCache = useSelector((store) => store.search);
- 
+const Head = () => {
+  //For Search box binding
+  const [searchQuery, setSearchQuery] = useState("");
+  //for suggestions
+  const [suggestions, setSuggestions] = useState([]);
+  //for focus and blur
+  const [showSuggestions, setShowSuggestions] = useState(false);
+  //Reading cache
+  const searchCache = useSelector((store) => store.search);
 
-    const dispatch = useDispatch()
+
+  const dispatch = useDispatch()
 
 
   //Debouncing in useEffect
@@ -24,23 +24,23 @@ const Head = () => {
     //but if the diff btw 2 key press is <200ms - decline the call
     //optimizing search api calls
     const timer = setTimeout(() => {
-        if (searchCache[searchQuery]) {
-          setSuggestions(searchCache[searchQuery]);
-        } else {
-          //Make an API call and update in cache
-          getSearchSuggestions();
-        }
-      }, 200);
-  
-      //At every key press it tries to clear timer
-      return () => {
-        clearTimeout(timer);
-      };
-    }, [searchQuery]);
+      if (searchCache[searchQuery]) {
+        setSuggestions(searchCache[searchQuery]);
+      } else {
+        //Make an API call and update in cache
+        getSearchSuggestions();
+      }
+    }, 200);
+
+    //At every key press it tries to clear timer
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [searchQuery]);
 
 
-    //Making the api call
-    const getSearchSuggestions = async () => {
+  //Making the api call
+  const getSearchSuggestions = async () => {
     console.log(searchQuery);
     const data = await fetch(YOUTUBE_SEARCH_API + searchQuery);
     const json = await data.json();
@@ -49,32 +49,29 @@ const Head = () => {
     dispatch(
       cacheResults({
         [searchQuery]: json[1],
-      }));};
+      }));
+  };
 
 
-    //Hamburger menu
-    const handleToggleMenu = () => {
+  //Hamburger menu
+  const handleToggleMenu = () => {
     dispatch(toggleMenu());
-    };
+  };
 
   return (
-    <div className="grid grid-flow-col p-5 m-2 shadow-lg">
-      <div className="flex col-span-1 cursor-pointer">
+    <div className="grid grid-flow-col p-5 m-2 mt-0 shadow-lg">
+      <div className=" mt-0 flex col-span-1 cursor-pointer">
         {/* Hamburger Icon */}
         <img
           onClick={() => handleToggleMenu()}
           className="h-8"
-          src="https://cdn.iconscout.com/icon/free/png-256/free-hamburger-menu-462145.png?f=webp"
+          src="https://uxwing.com/wp-content/themes/uxwing/download/web-app-development/hamburger-menu-icon.png"
           alt="menu"
         />
 
-        {/* Youtube logo */}
+        {/* watchversee logo */}
         <a href="/">
-          <img
-            className="h-8 mx-2"
-            src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/YouTube_Logo_2017.svg/1024px-YouTube_Logo_2017.svg.png"
-            alt="youtube"
-          />
+          <span className="mt-0 p-5 m-2  text-3xl font-black text-red-600 dark:text-white">watchversee</span>
         </a>
       </div>
 
